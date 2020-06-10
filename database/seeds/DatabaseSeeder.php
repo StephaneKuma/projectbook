@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        DB::table('roles')->    insert([
+            [
+                'name'          => 'Admin',
+                'created_at'    => date("Y-m-d H:i:s"),
+                'updated_at'    => date("Y-m-d H:i:s")
+            ],
+            [
+                'name'          => 'User',
+                'slug'          => 'user',
+                'created_at'    => date("Y-m-d H:i:s"),
+                'updated_at'    => date("Y-m-d H:i:s")
+            ]
+        ]);
     }
 }
