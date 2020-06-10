@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Project;
+use App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role_id', 'last_name', 'first_name', "pseudo", 'email', 'password', 'image', 'thumb', 'description'
     ];
 
     /**
@@ -36,4 +38,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasRole()
+    {
+        return $this->role->name;
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
