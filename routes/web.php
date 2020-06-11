@@ -26,3 +26,11 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => ['auth'
     Route::get('dashboard', 'ProjectController@index')->name('dashboard');
     Route::resource('projects', 'ProjectController');
 });
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin'], 'as' => 'admin.'], function () {
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('roles', 'RoleController');
+    Route::resource('users', 'UserController');
+    Route::resource('sectors', 'SectorController');
+    Route::resource('projects', 'ProjectController');
+});

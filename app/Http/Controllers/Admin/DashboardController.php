@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Role;
+use App\Models\Sector;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ProjectController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +18,15 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $roles = Role::count();
+        $users = User::count();
+        $sectors = Sector::count();
+        $projects = Project::count();
         $links = [];
-        $link_1 = "<li class='breadcrumb-item active'><a href=" . route('users.projects.index') . ">Projets</a></li>";
+        $link_1 = "<li class='breadcrumb-item active'><a href=" . route('admin.dashboard') . ">Tableau de bord</a></li>";
         $links[] = $link_1;
-        $title = "Liste des projets";
-        $projects = Project::all()->where('user_id', '=', Auth::user()->id);
-        return view('users.projects.index', compact('projects', 'links', 'title'));
+        $title = "Tableau de bord";
+        return view('admin.dashbord', compact('roles', 'users', 'sectors', 'projects', 'links', 'title'));
     }
 
     /**

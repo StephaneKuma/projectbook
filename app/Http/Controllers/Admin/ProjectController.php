@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -16,12 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $links = [];
-        $link_1 = "<li class='breadcrumb-item active'><a href=" . route('users.projects.index') . ">Projets</a></li>";
-        $links[] = $link_1;
-        $title = "Liste des projets";
-        $projects = Project::all()->where('user_id', '=', Auth::user()->id);
-        return view('users.projects.index', compact('projects', 'links', 'title'));
+        //
     }
 
     /**
