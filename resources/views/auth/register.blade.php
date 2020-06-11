@@ -25,7 +25,7 @@
             </div>
 
             <div class="input-group mb-3">
-                <input  id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="last_name" value="{{ old('first_name') }}" required autocomplete="first_name" placeholder="{{ _('Prénom(s)') }}">
+                <input  id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" placeholder="{{ _('Prénom(s)') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>

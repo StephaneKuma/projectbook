@@ -23,13 +23,13 @@ class CreateUsersTable extends Migration
                 ->onDelete('cascade');
             $table->string('last_name');
             $table->string('first_name');
-            $table->string('pseudo');
+            $table->string('pseudo')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('image');
-            $table->string('thumb');
-            $table->string('description');
+            $table->string('image')->nullable();
+            $table->string('thumb')->nullable();
+            $table->string('description')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
