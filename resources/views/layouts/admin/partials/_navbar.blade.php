@@ -30,7 +30,9 @@
         <!-- User Dropdown Menu -->
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->pseudo }} <span class="caret"></span>
+                @if(Storage::disk('public')->exists('user_thumbnails/'. Auth::user()->thumb))
+                    <img src="{{Storage::url('user_thumbnails/'.Auth::user()->thumb)}}" alt="{{Auth::user()->thumb}}" class="img-circle elevation-2" alt="User Image">
+                @endif
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -28,6 +28,10 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <!-- toastr -->
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -67,13 +71,23 @@
     <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- date-range-picker -->
     <script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+    <!-- toastr -->
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+    <!-- Summernote -->
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
     <!-- DataTables -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/datable.locale.fr.js') }}"></script>
 
     <script>
+        $(function () {
+            // Summernote
+            $('.textarea').summernote()
+        })
+
         $(function () {
             $('#projectForms').DataTable({
                 "paging": true,
@@ -99,7 +113,7 @@
             });
         })();
 
-        function deleteDF(id){
+        function deleteRole(id){
 
             swal({
                 title: 'Are you sure?',
@@ -111,15 +125,27 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.value) {
-                    document.getElementById('del-drugForm-'+id).submit();
+                    document.getElementById('del-role-'+id).submit();
                     swal(
                         'Deleted!',
-                        'Category has been deleted.',
+                        'Role has been deleted.',
                         'success'
                     )
                 }
             })
         }
+    </script>
+    {!! Toastr::message() !!}
+
+    <script>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error('{{ $error }}','Error',{
+                    closeButtor: true,
+                    progressBar: true
+                });
+            @endforeach
+        @endif
     </script>
 </body>
 </html>

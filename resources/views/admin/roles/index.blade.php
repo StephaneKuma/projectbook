@@ -29,16 +29,13 @@
                             <td>{{ $key+1 }}</td>
                             <td>{{ $role->name }}</td>
                             <td class="text-center">
-                                <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-info btn-sm waves-effect">
-                                    <i class="material-icons">view</i>
-                                </a>
                                 <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-info btn-sm waves-effect">
                                     <i class="material-icons">edit</i>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-sm waves-effect" onclick="deleteDF({{$role->id}})">
+                                <button type="button" class="btn btn-danger btn-sm waves-effect" onclick="deleteRole({{$role->id}})">
                                     <i class="material-icons">delete</i>
                                 </button>
-                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" id="del-drugForm-{{$role->id}}" style="display:none;">
+                                <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" id="del-role-{{$role->id}}" style="display:none;">
                                     @csrf
                                     @method('DELETE')
                                 </form>

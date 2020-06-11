@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RoleController extends Controller
 {
@@ -55,6 +56,7 @@ class RoleController extends Controller
         $role->name = $request->role_name;
         $role->save();
 
+        Toastr::success('Succès', 'Le role a bien été ajouté.');
         return redirect()->route('admin.roles.index');
     }
 
@@ -91,7 +93,7 @@ class RoleController extends Controller
         $links[] = $link_1;
         $links[] = $link_2;
         $title = "Modifier $role->name";
-        return view('admin.roles.show', compact('links', 'title'));
+        return view('admin.roles.edit', compact('links', 'title', 'role'));
     }
 
     /**
@@ -111,6 +113,7 @@ class RoleController extends Controller
         $role->name = $request->role_name;
         $role->save();
 
+        Toastr::success('Succès', 'Le role a bien été modifié.');
         return redirect()->route('admin.roles.index');
     }
 
@@ -125,6 +128,7 @@ class RoleController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
 
+        Toastr::success('Succès', 'Le role a bien été supprimé.');
         return back();
     }
 }

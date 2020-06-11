@@ -36,7 +36,10 @@
                             <td>{{ $user->pseudo }}</td>
                             <td>{{ $user->role->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->image }}</td>
+                            <td class="text-center">
+                                @if(Storage::disk('public')->exists('user_thumbnails/'.$user->thumb))
+                                    <img src="{{Storage::url('user_thumbnails/'.$user->thumb)}}" alt="{{$user->name}}" class="img-responsive img-rounded">
+                                @endif
                             <td>{{ $user->description }}</td>
                             <td class="text-center">
                                 <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-info btn-sm waves-effect">
